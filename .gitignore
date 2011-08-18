@@ -1,0 +1,10 @@
+target/
+web-app/WEB-INF/classes
+.classpath
+.project
+*.swp
+.settings/
+out/
+bin/
+logs/*
+stacktrace.log
