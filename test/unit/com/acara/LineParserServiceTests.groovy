@@ -14,6 +14,9 @@ import com.acara.configs.Constants
 class LineParserServiceTests extends GrailsUnitTestCase {
 	
 	def lineParserService
+	
+	static def ALFA_ROMEO_LINE = "\"002\",\"0002\",\"001\",\"ALFA ROMEO\",\"145\",\"1.8 TS (L96)\",\"\$\",,,,,,,,,,,,\"23520\",\"22400\""
+	static def MB_LINE =  "\"028\",\"0024\",\"018\",\"MERCEDES BENZ\",\"Viano\",\"2.2 CDI Ambiente AT 7 Pass\",\"u\$s\",\"78300\",\"65000\",\"61000\",\"57000\",\"51000\",\"46000\",\"41000\",\"37000\",,,,,"
 		
     protected void setUp() {
         super.setUp()
@@ -22,7 +25,7 @@ class LineParserServiceTests extends GrailsUnitTestCase {
 
 	
 	void testBrandSimpleLine(){
-		def line = "\"002\",\"0002\",\"001\",\"ALFA ROMEO\",\"145\",\"1.8 TS (L96)\",\"\$\",,,,,,,,,,,,\"23520\",\"22400\""
+		def line = ALFA_ROMEO_LINE
 		
 		Brand b = lineParserService.parseBrand(line)
 		
@@ -34,7 +37,7 @@ class LineParserServiceTests extends GrailsUnitTestCase {
 	
 	
 	void testBrandFullLine(){
-		def line = "\"028\",\"0024\",\"018\",\"MERCEDES BENZ\",\"Viano\",\"2.2 CDI Ambiente AT 7 Pass\",\"u\$s\",\"78300\",\"65000\",\"61000\",\"57000\",\"51000\",\"46000\",\"41000\",\"37000\",,,,,"
+		def line = MB_LINE
 		
 		Brand b = lineParserService.parseBrand(line)
 		
@@ -45,7 +48,7 @@ class LineParserServiceTests extends GrailsUnitTestCase {
 	
 	
 	void testModelSimpleLine(){
-		def line = "\"002\",\"0002\",\"001\",\"ALFA ROMEO\",\"145\",\"1.8 TS (L96)\",\"\$\",,,,,,,,,,,,\"23520\",\"22400\""
+		def line = ALFA_ROMEO_LINE
 		
 		Model m = lineParserService.parseModel(line)
 		
@@ -55,7 +58,7 @@ class LineParserServiceTests extends GrailsUnitTestCase {
 		}
 	
 	void testModelFullLine(){
-		def line = "\"028\",\"0024\",\"018\",\"MERCEDES BENZ\",\"Viano\",\"2.2 CDI Ambiente AT 7 Pass\",\"u\$s\",\"78300\",\"65000\",\"61000\",\"57000\",\"51000\",\"46000\",\"41000\",\"37000\",,,,,"
+		def line = MB_LINE
 		
 		Model m = lineParserService.parseModel(line)
 		
@@ -65,7 +68,7 @@ class LineParserServiceTests extends GrailsUnitTestCase {
 		}
 	
 	void testVersionSimpleLine(){
-		def line = "\"002\",\"0002\",\"001\",\"ALFA ROMEO\",\"145\",\"1.8 TS (L96)\",\"\$\",,,,,,,,,,,,\"23520\",\"22400\""
+		def line = ALFA_ROMEO_LINE
 		
 		Version v = lineParserService.parseVersion(line)
 		
@@ -79,7 +82,7 @@ class LineParserServiceTests extends GrailsUnitTestCase {
 		}
 	
 	void testVersionFullLine(){
-		def line = "\"028\",\"0024\",\"018\",\"MERCEDES BENZ\",\"Viano\",\"2.2 CDI Ambiente AT 7 Pass\",\"u\$s\",\"78300\",\"65000\",\"61000\",\"57000\",\"51000\",\"46000\",\"41000\",\"37000\",,,,,"
+		def line = MB_LINE
 		
 		Version v = lineParserService.parseVersion(line)
 		
@@ -95,6 +98,8 @@ class LineParserServiceTests extends GrailsUnitTestCase {
 		
 		
 		}
+	
+	
 	
 	
 }

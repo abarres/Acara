@@ -9,14 +9,43 @@ class LineParserService {
 
     static transactional = false
 	
+	
+	public String[] tokenizeLine(String line){
+		String auxLine
+		if (line.endsWith(",")){
+			auxLine = line+","
+		}else{
+			auxLine = line
+		}
+		// Esto es por si la ultima celda no tiene contenido, entonces no la parsea al tokenizar
+		// Ya se, ya se... es una negrada...
+		String fullLine = auxLine.replaceAll(",,",", ,").replaceAll(",,",", ,") // replaceAll("\$","\\\$").	
+		return fullLine.tokenize(",")
+		}
+	
+	public String[] tokenizeLine2(def line){
+		String auxLine
+		if (line.endsWith(",")){
+			auxLine = line+","
+		}else{
+			auxLine = line
+		}
+		// Esto es por si la ultima celda no tiene contenido, entonces no la parsea al tokenizar
+		// Ya se, ya se... es una negrada...
+		String fullLine = auxLine.replaceAll(",,",", ,").replaceAll(",,",", ,") // replaceAll("\$","\\\$").
+		return fullLine.tokenize(",")
+		}
+	
 	public Brand parseBrand(def line){
 		
-		String[] fields = line.tokenize(",")
-		
-		return new Brand(
-			id: cleanField(fields[Constants.MARCA_ID]).toInteger(),			
+		String[] fields = tokenizeLine(line)
+		Brand b =  new Brand(
+			id: parseId(fields[Constants.MARCA_ID]),			
 			name: cleanField(fields[Constants.MARCA_NOMBRE])
+//			,models : new HashMap<String, Brand>()
 			)
+		b.setId(cleanField(fields[Constants.MARCA_ID]).toInteger())
+		return b
 		}
 	
 	
@@ -28,28 +57,21 @@ class LineParserService {
 		}else{
 			auxLine = line
 		}		
-		String[] fields = auxLine.tokenize(",")
-		
-		return new Model(
-			id: cleanField(fields[Constants.MODELO_ID]).toInteger(),
-			name: cleanField(fields[Constants.MODELO_NOMBRE])			
+		String[] fields =  tokenizeLine(line)
+		Model m = new Model(
+			id: parseId(fields[Constants.MODELO_ID]),
+			name: cleanField(fields[Constants.MODELO_NOMBRE])
+//			,versions: new HashMap<String, Brand>()			
 			)
+		m.setId(cleanField(fields[Constants.MODELO_ID]).toInteger())
+		return m
 
 		}
 	
 	
 	public Version parseVersion(def line){
-		// Esto es por si la ultima celda no tiene contenido, entonces no la parsea al tokenizar
-		// Ya se, ya se... es una negrada...
-		String auxLine
-		if (line.endsWith(",")){
-			auxLine = line+","
-		}else{
-			auxLine = line
-		}
-		
-		String fullLine = auxLine.replaceAll(",,",", ,").replaceAll(",,",", ,")
-		String[] fields = fullLine.tokenize(",")
+
+		String[] fields = tokenizeLine(line)// fullLine.tokenize(",")
 		
 		
 		HashMap<String, Long> prices = new HashMap<String, Long>()
@@ -68,13 +90,14 @@ class LineParserService {
 		prices.put(Constants.INDEX_PRICE_2000, parsePrice(fields[Constants.PRICE_2000]))
 		prices.put(Constants.INDEX_PRICE_1999, parsePrice(fields[Constants.PRICE_1999]))
 		
-		return new Version(
-			id: cleanField(fields[Constants.VERSION_ID]).toInteger(),
+		Version v = new Version(
+			id: parseId(fields[Constants.VERSION_ID]),
 			name: cleanField(fields[Constants.VERSION_NOMBRE]),
 			priceSymbol: cleanField(fields[Constants.MONEDA_SIMBOLO]),
 			prices: prices
 			)
-		
+		v.setId(cleanField(fields[Constants.VERSION_ID]).toInteger())
+		return v		
 		}
 
 
@@ -96,6 +119,10 @@ class LineParserService {
 		catch(Exception e){ // NumberFromat ? 
 			return 0L			
 			}		
+		}
+	
+	public int parseId(String input){
+		return cleanField(input).toInteger()		
 		}
 	    
 }
