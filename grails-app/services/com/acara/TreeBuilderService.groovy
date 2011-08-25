@@ -8,7 +8,7 @@ import com.acara.configs.Constants
 
 class TreeBuilderService {
 
-    static transactional = true
+    static transactional = false
 	def lineParserService
 
     Brand checkAndAssociateBrand(Menu menu, def line){

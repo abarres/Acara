@@ -41,7 +41,11 @@ class Constants {
 	static final String INDEX_PRICE_2000 = "2000"
 	static final String INDEX_PRICE_1999 = "1999"
 	
-	static final def INDEX_FULL = ["0KM","2010","2009","2008","2008","2007","2006","2005","2004","2003","2002","2001","2000","1999"] 
+	static final def INDEX_FULL = ["0KM","2010","2009","2008","2008","2007","2006","2005","2004","2003","2002","2001","2000","1999"]
+	
+	static final String CARS_PREFIX = "car"
+	static final String TRUCKS_PREFIX = "truck"
+	static final String BIKES_PREFIX = "bike" 
 	
 
 }
