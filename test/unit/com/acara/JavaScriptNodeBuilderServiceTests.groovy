@@ -101,4 +101,18 @@ class JavaScriptNodeBuilderServiceTests extends GrailsUnitTestCase {
 		
 		}
 	
+	void testVersionPriceList(){
+		def line = ALFA_ROMEO_SPIDER_LINE
+		
+		Version versionAlfa = lineParser.parseVersion(line)
+		def mockedVersion = [versionAlfa]
+		mockDomain(Version, mockedVersion)
+		
+		String versionVar = javascriptBuilder.doVersionVar(Constants.CARS_PREFIX, "02","11", versionAlfa)
+		
+		assertTrue(versionVar.indexOf("299600")>0)
+		assertTrue(versionVar.indexOf("269360")>0)
+		
+		}
+	
 }

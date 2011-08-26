@@ -38,6 +38,7 @@ class JavaScriptNodeBuilderService {
 	String doModelVar(String prefix, String brandId, Model model){
 		StringBuffer sb = new StringBuffer()
 		sb.append("var model_${brandId}_${model.id} = new Array(")
+
 		
 		model.versions.each{
 			sb.append("{id:${it.id},name:'${it.name}'},")
@@ -45,6 +46,21 @@ class JavaScriptNodeBuilderService {
 		
 		sb.append(");")
 		return sb.toString().replace( ',);' , ');' )
+		}
+	
+	String doVersionVar(String prefix, String brandId, String modelId, Version versionInput){
+		StringBuffer sb = new StringBuffer()
+		sb.append("var prices_${brandId}_${modelId}_${versionInput.id} = {")		
+		
+		sb.append("index${Constants.INDEX_PRICE_0KM}:${versionInput.prices.get(Constants.INDEX_PRICE_0KM)}")
+		
+		for(int i = Constants.MAX_YEAR; i>= Constants.MIN_YEAR; i--){
+			sb.append(",index${i}:${versionInput.prices.get(String.valueOf(i))}")
+			}
+		
+		sb.append("};")
+		return sb.toString().replace( ',);' , ');' )
+		
 		}
 	
 }

@@ -55,13 +55,19 @@ grails.exceptionresolver.params.exclude = ['password']
 environments {
     production {
         grails.serverURL = "http://www.changeme.com"
+		uiperformance.keepOriginals = false
+		uiperformance.minifyJs=false
+		uiperformance.minifyCss=false
+		uiperformance.processImages=false
     }
     development {
         grails.serverURL = "http://localhost:8080/${appName}"
+		uiperformance.enabled = false
     }
     test {
         grails.serverURL = "http://localhost:8080/${appName}"
-    }
+		uiperformance.enabled = false
+    }	
 
 }
 
@@ -88,3 +94,14 @@ log4j = {
 
     warn   'org.mortbay.log'
 }
+
+
+uiperformance.bundles = [
+	[type: 'js',
+	 name: 'acaraJS.base',
+	 files: ['jquery-1.6.1.min','chico-min-0.7.0','application','AcaraCarBrands']
+	 ],
+ 	[type: 'css',
+		name: 'acaraCSS.base',
+		files: ['chico-0.7.0', 'publicationFlow','base']]
+	 ]

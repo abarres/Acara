@@ -30,13 +30,17 @@ com.acara.model.Model model
 String carsVar = javascriptBuilder.doCarsMenuVar(menu)
 StringBuffer brandBuffer = new StringBuffer()
 StringBuffer modelBuffer = new StringBuffer()
+StringBuffer versionBuffer = new StringBuffer()
         
 menu.cars.each{
     brand = it
     brandBuffer.append(javascriptBuilder.doBrandVar(com.acara.configs.Constants.CARS_PREFIX, it)+"\n")
     it.models.each{
         model = it
-        modelBuffer.append(javascriptBuilder.doModelVar(com.acara.configs.Constants.CARS_PREFIX, String.valueOf(model.id) ,it)+"\n")
+        modelBuffer.append(javascriptBuilder.doModelVar(com.acara.configs.Constants.CARS_PREFIX, String.valueOf(brand.id) ,it)+"\n")
+        model.versions.each{
+            versionBuffer.append(javascriptBuilder.doVersionVar(com.acara.configs.Constants.CARS_PREFIX, String.valueOf(brand.id), String.valueOf(model.id), it)+"\n")
+        }
     }
 }
 
@@ -46,8 +50,10 @@ fileSB.append("/****CARS****/\n")
 fileSB.append(carsVar+";\n")
 fileSB.append("/****BRANDS****/"+"\n")
 fileSB.append(brandBuffer.toString()+"\n")
-fileSB.append("/**** Versions ******/")
+fileSB.append("/**** MODELS ******/\n")
 fileSB.append(modelBuffer.toString())
+fileSB.append("/**** VERSION PRICES ******/\n")
+fileSB.append(versionBuffer.toString())
 
 
 def fileOut = new File(basePath+"/web-app/js/AcaraCarBrands.js")
