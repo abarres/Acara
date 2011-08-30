@@ -69,7 +69,7 @@ class LineParserService {
 		}
 	
 	
-	public Version parseVersion(def line){
+	public Version parseCarVersion(def line){
 
 		String[] fields = tokenizeLine(line)// fullLine.tokenize(",")
 		

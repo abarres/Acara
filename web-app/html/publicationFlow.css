@@ -1,0 +1,831 @@
+@CHARSET "UTF-8";
+
+/*
+ ** 
+ Header and footer light styles
+ */
+.mainHeaderLight{
+    border-bottom: 1px solid #eaeaea;
+    height: 55px;
+    margin-bottom: 20px;
+    overflow: visible;
+}
+.mainHeaderLight img{
+    clip: rect(0px, 340px, 50px, 0px);
+    position: absolute;
+}
+.ie6 .mainHeaderLight img{
+    position: relative;
+}
+.mainHeaderLight .nav{
+    float: right;
+    margin-right: 5px;
+    margin-top: 30px;
+}
+.ie6 .mainHeaderLight .nav{
+    margin-top: -10px;
+}
+.mainHeaderLight li{
+    float: right;
+    margin-left: 10px;
+}
+.footer.mainFooter{
+    clear: both;
+    margin-top: 30px;
+}
+.footer.mainFooter li{
+    display: inline;
+}
+
+/* wizard path
+
+.wizard {list-style-type:none;margin:0 auto;overflow:hidden;padding:0;}
+
+.wizard li {color:#A2a2a2;float:left;font-family:'Trebuchet MS', Sans-Serif;font-size:11px;text-align:center;background:url(/cmgSell/images/path/sprite_path.png) no-repeat scroll right -120px;height:37px;width:33.33%;*font-size:13px; font-size:13px\0/}
+
+.wizard li span, .wizard li strong{display:block;height:18px;line-height:17px;margin-right:9px;padding:9px 0;border-bottom:1px solid #CACACA;}
+
+.wizard li.firstStep {background-position: right -120px;}
+
+.wizard li.firstStep span, .wizard li.firstStep strong {-moz-border-radius-topleft:5px;-webkit-border-radius-topleft:5px;background-color:#FFF;}
+
+.wizard li.prevStep{background-position:right -3px;}
+
+.wizard li.activeStep {border:0;background-position:right -41px;}
+
+.wizard li.activeStep strong{background: url(/cmgSell/images/path/sprite_path.png) repeat-x 0 -157px;border:none;font-size:12px;color:#333;*+html font-size:13px;font-size:13px\0/;}
+
+.wizard li.finalStep{background:none;}
+
+.wizard li.finalStep span, .wizard li.finalStep strong{margin-right:0; -moz-border-radius-topright:5px;-webkit-border-radius-topright:5px;}
+
+.wizard li.twoSteps {width: 50%;}
+
+*/
+
+/* Category Section  */
+
+.selected {
+  	background-color: LightGrey; 					
+}
+
+div.listIntermediate {	
+	height:150px;
+	width:200px;
+	overflow:auto;
+	float: left; 
+}
+
+div.listFinal {
+	height:150px;
+	width:200px;
+	overflow:auto;
+}
+
+
+/* estilo de tabla de la hoja de reseteo*/
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* Tablas de paginas internas */
+.ContentInfo li { 
+background: none repeat scroll 0 0 transparent;
+}
+
+.ContentInfo ol li{
+padding-bottom:5px;
+}
+.ContentInfo ul li{
+    line-height: 17px;
+    padding-bottom: 8px;
+	color:#333333;
+}
+.ContentInfo ol{
+list-style: decimal inside none;
+}
+.ContentInfo ul{
+list-style: disc inside none;
+}
+.ContentInfo ul{
+margin: 10px 20px 10px 20px;
+}
+.ContentInfo p{
+ font-size:13px;
+padding-bottom:12px; 
+line-height: 17px;
+margin: 0px;
+}
+.ContentInfo h2{
+   color: #333333;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 10px 0 0;
+    padding: 20px 0 10px;   
+}
+.ContentInfo h4{
+ font-size:14px;
+padding-bottom:5px; 
+    font-weight: normal;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.ContentInfo table {
+    border: 1px solid #C2C2C2;
+    color: #333333;
+    font-size: 13px;
+}
+.ContentInfo table thead tr th {
+    background: none repeat scroll 0 0 #E9E9E9;
+    text-align: left;
+	padding: 5px 10px;
+}
+.ContentInfo table p {
+    line-height: 15px;
+    margin: 0;
+    padding-bottom: 10px;
+}
+.ContentInfo table tbody tr td {
+    padding: 10px;
+}
+
+.ContentInfo table tbody td {
+    border-bottom: 1px solid #C2C2C2;
+}
+
+
+
+
+
+/*********COMIENZO HOME VENDER**************/
+div#layoutPublic {
+    margin: 0 auto;
+    max-width: 1200px;
+    min-width: 960px;
+    text-align: left;
+    padding: 0px;
+}
+.hcgroup.modelos {
+    background: url("http://www.tucarro.com.ve/org-img/tucarro/tuc_nhp/image/searchHs.gif") repeat-x scroll 0 -130px #FFFFFF;
+    border: 1px solid #CCCCCC;
+    display: block;
+    padding-bottom: 30px;
+    width: auto;
+}
+.hcgroupTui.modelos {
+    background: url("http://www.tucarro.com.ve/org-img/tucarro/tuc_nhp/image/searchHs.gif") repeat-x scroll 0 -130px #FFFFFF;
+    border: 1px solid #CCCCCC;
+    display: block;
+    padding-bottom: 30px;
+    width: auto;
+}
+.hcgroup h2{
+    color: #003399;
+    font: 21px Verdana,Arial,Helvetica,sans-serif;
+       margin: 0;
+    padding: 10px 0 20px 10px;
+}
+.hcgroupTui h2{
+    color: #E45212;
+    font: 21px Verdana,Arial,Helvetica,sans-serif;
+       margin: 0;
+    padding: 10px 0 20px 10px;
+}
+
+.recPublic{
+    background-color: #FFFFFF;
+	text-align:center;
+	width:auto;	
+ }
+.recPublic h3{
+	color: #333333;
+    font: 18px Verdana,Arial,Helvetica,sans-serif;
+	padding:0px;
+	}
+.ContenPubli{
+     color: #333333;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    padding: 0 0 2px 10px;
+	width:100%;
+	max-width: 1200px;
+    min-width: 960px;
+	 }
+	
+	
+.ContenPubli ul li {
+    color: #333333;
+    line-height: 17px;
+}
+	
+.ContenPubli li{
+        background: none repeat scroll 0 0 transparent;
+        margin: 0 auto;
+   	float:left;
+	margin-right:15px;
+	border: 1px solid #CCCCCC;
+	padding: 10px;
+	margin-bottom: 20px;
+	width:29%;
+        height:340px;
+}
+
+.ContenPubli p{
+margin:0px;
+padding:0px;
+}
+	 
+.btn {
+    background-repeat: repeat-x;
+    cursor: pointer;
+    font: bold 16px Arial,Helvetica,sans-serif;
+    overflow: visible;
+    padding: 4px 15px;
+}
+.btn:hover {
+    border: 1px solid #333333;
+}
+.tuc {
+    background: url("http://www.tucarro.com.ve/org-img/tucarro/tuc_nhp/image/searchHs.gif") repeat scroll 0 -68px #26517E;
+    border: 1px solid #4475A8;
+    color: #FFFFFF;
+}
+.btn.tuc:focus {
+    background-position: 0 -99px;
+}
+.btn.tuc:hover {
+    background-position: 0 -99px;
+}
+.btn.tuc:active {
+    background-position: 0 -68px;
+    border: 1px solid #60ADBA;
+    color: #333333;
+    outline: medium none;
+}
+.syc {
+    margin: 20px auto 6px;
+}
+.info_ic {
+    background: url("http://static.mlstatic.com/org-img/icons/info16.gif") no-repeat scroll 0 0 transparent;
+    padding: 0px 0 3px 23px;
+}	
+	
+.btnTui {
+    background-repeat: repeat-x;
+    cursor: pointer;
+    font: bold 16px Arial,Helvetica,sans-serif;
+    overflow: visible;
+    padding: 4px 14px;
+}
+.btnTui:hover {
+    border: 1px solid #FF0000;
+}
+.tui {
+    background: url("http://static.mlstatic.com/org-img/tuinmueble/tui_nhp/image/searchHs.gif") repeat scroll 0 -68px #26517E;
+    border: 1px solid #E74E21;
+    color: #FFFFFF;
+}
+.btnTui.tui:focus {
+    background-position: 0 -99px;
+}
+.btnTui.tui:hover {
+    background-position: 0 -99px;
+}
+.btnTui.tui:active {
+    background-position: 0 -68px;
+    border: 1px solid #E74E21;
+    color: #333333;
+    outline: medium none;
+}
+
+/* Fin Home Vender */
+/**********estilos globales************/
+	* html #layout{
+		width: 760px;
+		width: expression(document.body.clientWidth>= 941 ? "940px":document.body.clientWidth < 761 ? "760":"auto");
+	}
+	* html div#layout{
+		width: 760px;
+		width: expression(document.body.clientWidth>= 1201 ? "1200px":document.body.clientWidth < 761 ? "760":"auto");
+	}
+	body{
+		color: #333;
+		font-family: Arial,Helvetica,sans-serif;
+		font-size: 12px;
+		margin: 2px 20px;
+		padding-top: 0;
+	}
+	#layout{
+		margin: 0 auto;
+		max-width: 940px;
+		min-width: 760px;
+		padding: 0 10px;
+	}
+	div#layout{
+		margin: 0 auto;
+		max-width: 1200px;
+		min-width: 960px;
+		text-align: left;
+	}
+	a:link,a:hover,a:active{
+		color: #0637B3;
+		text-decoration:none;
+	}
+	a:hover{
+		text-decoration:underline;
+	}
+	a:visited{    
+		color: #800080;
+		text-decoration:none;
+	}
+	hr,.o{
+		display: none;
+	}
+	.clear{
+		clear:both;
+	}
+	/*********fin globales**********/
+
+	
+/****************Componentes de flujo de servicios ********************/
+
+
+.box.noBorder {
+    background: none repeat scroll 0 0 transparent;
+    padding: 0;
+    width: 100%;
+}
+iframe {
+    display: block;
+}
+form .options label input, form .options input {
+    border: 1px solid #CCCCCC;
+    margin: 5px 0;
+    padding: 3px;
+}
+legend p.required {
+    font-weight: normal;
+}
+.wizard {
+       margin: 0 auto;
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
+}
+.wizard li {
+    background: url("http://servicios-syi.mercadolibre.com.ar/images/sprite_path.png") no-repeat scroll right -120px #FFFFFF;
+    color: #A2A2A2;
+    float: left;
+    font-family: 'Trebuchet MS',Sans-Serif;
+    font-size: 11px;
+    height: 37px;
+    text-align: center;
+    width: 20%;
+}
+.wizard li span, .wizard li strong {
+    border-bottom: 1px solid #CACACA;
+    display: block;
+    height: 18px;
+    line-height: 17px;
+    margin-right: 9px;
+    padding: 9px 0;
+}
+.wizard li.wFirst {
+    background-position: right -120px;
+    border-radius: 5px 0 0 0;
+}
+.wizard li.wFirst span, .wizard li.wFirst strong {
+    background-position: right 0;
+    border-radius: 5px 0 0 0;
+}
+.wizard li.wPrevious {
+    background-position: right 0;
+}
+.wizard li.wFirst.wPrevious {
+    background-position: right 0;
+    border-radius: 5px 0 0 0;
+}
+.wizard li.wActive {
+    background-position: right -41px;
+}
+.wizard li.wActive strong {
+    background: url("http://servicios-syi.mercadolibre.com.ar/images/sprite_path.png") repeat-x scroll 0 -157px transparent;
+    border: medium none;
+    color: #333333;
+    font-size: 12px;
+}
+.wizard li.wFinal {
+    background: none repeat scroll 0 0 #F2F1F2;
+    border-radius: 0 5px 0 0;
+}
+.wizard li.wFinal strong {
+    border-radius: 0 5px 0 0;
+    height: 19px;
+    margin-right: 0;
+}
+.wizard li.wFinal span {
+    margin-right: 0;
+}
+.wizard li.wNext {
+    background: url("http://servicios-syi.mercadolibre.com.ar/images/sprite_path.png") no-repeat scroll right -81px #F2F1F2;
+}
+table.costs {
+    margin: 20px auto;
+    width: 90%;
+}
+table.costs td {
+    width: 25%;
+}
+table.classifieds {
+    width: 80%;
+}
+table.costs label {
+    display: inline;
+    float: none;
+    margin: 0;
+    padding-left: 10px;
+    width: auto;
+}
+.costs thead {
+    color: #999999;
+    font-size: 11px;
+}
+.costs thead td {
+    line-height: 13px;
+    padding: 0 10px 5px;
+    vertical-align: bottom;
+}
+.costs tbody td {
+    border-right: 1px dashed #CACACA;
+    border-top: 1px solid #CACACA;
+    border-width: 1px 1px 1px 0;
+    font-size: 13px;
+    padding: 10px 10px 20px;
+}
+.costs tbody td.sellCost {
+    border-right: medium none;
+}
+.costs thead td.publicationCost, .costs tbody td.publicationCost, .costs tbody td.sellCost {
+}
+.costs tbody td.sellCost, .costs tbody td.publicationCost, .costs tbody td label {
+    font-size: 15px;
+}
+.costs .title {
+    color: #333333;
+    font-size: 13px;
+    font-weight: bold;
+}
+.ico.help {
+    display: inline-block;
+    margin-left: 0;
+    vertical-align: top;
+}
+div#uploader {
+    height: 200px;
+}
+
+div#uploaderExtra {
+    height: 200px;
+}
+
+.picUploadError {
+    color: #C70000;
+    font-size: 11px;
+    margin-right: 3px;
+    padding-top: 5px;
+    vertical-align: middle;
+}
+.picBorderOff {
+    border: 1px solid #FFFFFF;
+}
+.fileLoading {
+    background: none repeat scroll 0 0 #000000;
+    display: none;
+    height: 115px;
+    left: 5px;
+    margin: 0;
+    opacity: 0.8;
+    position: absolute;
+    top: 5px;
+    width: 115px;
+    z-index: 999999;
+}
+.fileLoadingExtra {
+    background: none repeat scroll 0 0 #000000;
+    display: none;
+    height: 114px;
+    left: 5px;
+    margin: 0;
+    opacity: 0.8;
+    position: absolute;
+    top: 5px;
+    width: 110px;
+    z-index: 999999;
+}
+.fileLoading img {
+    display: block;
+    margin: 5px auto;
+}
+<<<<<<< HEAD
+
+.fileLoadingExtra img {
+    display: block;
+    margin: 5px auto;
+}
+.ContFotosAgregar {
+=======
+/*.ContFotosAgregar {
+>>>>>>> 8c3c14fca814e7cd8c9c8be2a6f34fd72e0fa8f6
+    display: block;
+    height: 140px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    position: relative;
+    width: auto;
+}
+
+.ContFotosAgregarExtra {
+    display: block;
+    height: 140px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    position: relative;
+    width: auto;
+}
+.picBorderOn {
+    border: 1px solid #CACACA;
+    height: 113px;
+    text-align: center;
+    width: 113px;
+}
+.picBorderOff {
+    height: 111px;
+    position: relative;
+    text-align: center;
+    width: 107px;
+}
+.picBorderOff img, .picBorderOn img {
+    display: block;
+    position: static;
+    visibility: visible !important;
+}
+.picBorderOff a {
+    bottom: 20px;
+    left: 0;
+    line-height: 15px;
+    position: absolute;
+    right: 0;
+    width: 100%;
+}
+
+#AgregarFoto1 .picBorderOff a {
+    bottom: 10px;
+}
+
+#AgregarFotoExtra1 .picBorderOff a {
+    bottom: 10px;
+}
+
+.picBorderOn a {
+    display: none;
+}
+#picsTable div#AgregarFoto1 {
+    margin-right: 20px;
+}
+
+#picsTableExtra div#AgregarFotoExtra1 {
+    margin-right: 20px;
+}
+
+#AgregarFoto1, #AgregarFoto2, #AgregarFoto3, #AgregarFoto4, #AgregarFoto5, #AgregarFoto6, #AgregarFoto7, #AgregarFoto8, #AgregarFoto9, #AgregarFoto10, #AgregarFoto11, #AgregarFoto12, #AgregarFoto13, #AgregarFoto14, #AgregarFoto15 {
+    float: left;
+    height: 150px;
+    padding: 5px;
+    position: relative;
+}
+#AgregarFoto2, #AgregarFoto3, #AgregarFoto4, #AgregarFoto5, #AgregarFoto6, #AgregarFoto7, #AgregarFoto8, #AgregarFoto9, #AgregarFoto10, #AgregarFoto11, #AgregarFoto12, #AgregarFoto13, #AgregarFoto14, #AgregarFoto15 {
+    margin: 0;
+}
+div.deleteImg {
+    margin-top: 5px;
+    text-align: center;
+<<<<<<< HEAD
+}
+
+div.deleteImgExtra {
+    margin-top: 5px;
+    text-align: center;
+}
+
+=======
+}*/
+>>>>>>> 8c3c14fca814e7cd8c9c8be2a6f34fd72e0fa8f6
+div.deleteImg a {
+    background-image: -moz-linear-gradient(100% 100% 90deg, #EAEAEA, #FFFFFF);
+    border: 1px solid #CACACA;
+    border-radius: 3px 3px 3px 3px;
+    color: #333333;
+    display: inline-block;
+    font-size: 13px;
+    height: 10px;
+    line-height: 10px;
+    padding: 2px;
+    text-decoration: none;
+    width: 10px;
+}
+
+div.deleteImgExtra a {
+    background-image: -moz-linear-gradient(100% 100% 90deg, #EAEAEA, #FFFFFF);
+    border: 1px solid #CACACA;
+    border-radius: 3px 3px 3px 3px;
+    color: #333333;
+    display: inline-block;
+    font-size: 13px;
+    height: 10px;
+    line-height: 10px;
+    padding: 2px;
+    text-decoration: none;
+    width: 10px;
+}
+
+div.deleteImg a:hover {
+    background: none repeat scroll 0 0 #EAEAEA;
+}
+
+div.deleteImgExtra a:hover {
+    background: none repeat scroll 0 0 #EAEAEA;
+}
+
+div.deleteImg a.deleteThis {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    color: #0000FF;
+    font-size: 11px;
+    height: auto;
+    text-decoration: underline;
+    width: auto;
+}
+div.deleteImg a.deleteThis:hover {
+    background: none repeat scroll 0 0 transparent;
+}
+.plupload.html5 input[type="file"] {
+    font-size: 70px;
+    height: 1%;
+    position: relative;
+    right: 640px;
+}
+.plupload.html5, .picBorderOff {
+    cursor: pointer;
+}
+.plupload.html5 input[type="file"] {
+    font-size: 95px;
+    right: 0;
+}
+.ContFotosAgregar.noIe form input[type="file"] {
+    position: absolute;
+    right: 85px;
+}
+.ContFotosAgregar.ie form input {
+    left: -20px;
+    position: relative;
+}
+.zoneSelection a {
+    cursor: pointer;
+}
+.zoneSelection * {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.moreChoices h4 {
+    margin-left: 145px;
+}
+.ch-expando .ch-expando-content {
+    margin-left: 0;
+}
+.message, .stack {
+    padding: 10px;
+}
+.snippet {
+    background-color: white;
+    border: 1px solid black;
+    font-family: courier;
+    margin: 3px;
+    padding: 5px;
+}
+.errorImage {
+    background-repeat: no-repeat;
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+.errorMessage {
+    height: 100px;
+    margin-top: 40px;
+    text-align: left;
+}
+.errorMessage h2 {
+    color: #DC7B1C;
+    font-family: "trebuchet MS",Helvetica,sans-serif;
+    font-size: 22px;
+    font-weight: normal;
+    margin-bottom: 0;
+    padding: 42px 0 0;
+}
+.errorPageMant {
+    height: 280px;
+}
+.app-version {
+    color: #A2A2A2;
+    font-family: 'Trebuchet MS',Sans-Serif;
+    font-size: 9px;
+    text-align: right;
+}
+.ckEditor {
+    float: left;
+    margin-top: 10px;
+    width: 70%;
+}
+.cke_browser_ie {
+    width: 100% !important;
+}
+.postForm {
+    padding: 10px;
+}
+
+form {
+    padding: 10px;
+}
+form label select {
+    padding: 3px 0;
+    vertical-align: middle;
+}
+.state ul {
+    display: inline-block;
+    vertical-align: top;
+}
+form .options.cost label input:focus {
+    border: 2px solid #666666;
+    padding: 2px;
+}
+form .options.cost label input.error:focus {
+    padding: 3px;
+}
+form .options ul li.field-box label input {
+    margin: 0 0 5px;
+}
+.ch-helper {
+    width: 270px;
+}
+.actions.centered {
+    margin: 0 0 20px;
+    text-align: center;
+}
+#loading {
+    text-align: center;
+}
+.priceInteger {
+    text-align: right;
+}
+.field-box input {
+    vertical-align: middle;
+}
+.field-box input:focus {
+    border: 2px solid #666666 !important;
+    padding: 1px !important;
+}
+.field-box input {
+    border: 1px solid #CCCCCC !important;
+    padding: 2px !important;
+}
+.field-box input.checkbox, .field-box input.radios {
+    border: 0 none !important;
+}
+.options.cost .field-box {
+    vertical-align: middle;
+}
+.options.cost .field-box select {
+    vertical-align: middle;
+}
+.disabled-combo {
+    color: gray;
+}
+.disabled-textfield {
+    background-color: #D3D3D3;
+    color: gray;
+}
+
+
+.box {
+    background-color: #FFFFFF;
+    background-position: 0 -535px;
+    background-repeat: repeat-x;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    margin: 0 0 10px;
+    padding: 10px;
+}
+
+/**************** Fin Componentes de flujo ********************/

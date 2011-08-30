@@ -1,21 +1,34 @@
-<html>
-	<head>
-	<title>MercadoLibre Argentina - Gu&iacute;a de precios de ACARA</title>
-	<meta name="robots" content="index,follow"><meta name="description" content="¡ Comprar y Vender en MercadoLibre !"><meta name="keywords" content="subastas, subasta, comprar, vender, compra, venta, remate, remates"><meta name="Classification" content="subastas, subasta, comprar, vender, compra, venta, remate, remates">
-	<meta content="main" name="layout"/>
-	
-	<p:javascript src='acaraJS.base'/>
-	<p:css name='acaraCSS.base'/>
-	
-	</head>
+<html><head>
+<title>MercadoLibre Argentina - Gu&iacute;a de precios de ACARA</title>
+<meta name="robots" content="index,follow"><meta name="description" content="ï¿½ Comprar y Vender en MercadoLibre !"><meta name="keywords" content="subastas, subasta, comprar, vender, compra, venta, remate, remates"><meta name="Classification" content="subastas, subasta, comprar, vender, compra, venta, remate, remates">
+
+
+
+
+
+
+
+<script type='text/javascript' src='jquery-1.6.1.min.js'></script>
+<script type='text/javascript' src='chico-min-0.7.0.js'></script>
+<script type='text/javascript' src='application.js'></script>
+
+<script type='text/javascript' src='AcaraCarBrands.js'></script>
+
+<link rel='stylesheet' type='text/css' href='chico-0.7.0.css' />
+<link rel='stylesheet' type='text/css' href='publicationFlow.css' />
+<link rel='stylesheet' type='text/css' href='base.css' />
+
+
+</head>
 <body>
 <div class="box noBorder">	
-
+<form action="/acara/pricesList/index" method="post" >	
 
 <!-- chico -->
 
 <form class="demo_form box" novalidate="novalidate">
 	<fieldset>
+
 		<legend>Guia de precios de ACARA</legend>
 		<ul>
 			<li class="fieldBox">
@@ -23,6 +36,7 @@
 					<span>Marca:<em>*</em></span>
 					<select class="required" id="brand" required="required" style="width:250" ></select>
 				</label>
+
 			</li>
 			<li class="fieldBox">
 				<label class="required" for="model">
@@ -31,6 +45,7 @@
 				</label>
 			</li>
 			<li class="fieldBox">
+
 				<label class="required" for="version">
 					<span>Version:<em>*</em></span>
 					<select class="required" id="version" required="required" style="width:250" ></select>
@@ -39,10 +54,11 @@
 		</ul>
 	</fieldset>
 	<p class="actions"><input type="button" class="btn primary" id="priceSearch" value="Buscar precios"></p>
+
 </form>	
 
 <!-- fin chico -->
-
+</form>
 
 <!-- inicio precios -->
 
@@ -62,7 +78,8 @@
 
 <!-- fin precios -->
 </div>
-<g:javascript>
+<script type="text/javascript">
+
 
 jQuery(function ($) {
 	$(document).ready(function (e) {
@@ -72,37 +89,17 @@ jQuery(function ($) {
 		for(i=0; i< carBrands.length; i++){
 				brandComb.append("<option value="+carBrands[i].id+">"+carBrands[i].name+"</option>");
 			}
-			
-		$('#brand').change();	
 	
 	});
-	
-	
-	
-	
 });
 
 
 var openTableComponent = "<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\"><thead id=\"pricesHead\"><tr><th> <p>Version</p> </th><th> <p>0 Km</p></th><th> <p>2010</p></th><th> <p>2009</p></th><th> <p>2008</p></th><th> <p>2007</p></th><th> <p>2006</p></th><th> <p>2005</p></th><th> <p>2004</p></th><th> <p>2003</p></th><th> <p>2002</p></th><th> <p>2001</p></th><th> <p>2000</p></th><th> <p>1999</p></th></tr> </thead><tbody id=\"pricesBody\">";
 var closeTableComponent = "</tbody></table>";
-var emptyPrice = "-";
 
-$('#brand').change(function(b){
-	var brandVal = $('#brand').val();	
-	fillModels(brandVal);
-});
-
-$('#model').change(function(){
-	//ClearAndEnableVersion();
-	//var versionComp = $('#version');
-	var brandId = $('#brand').val();
-	var modelId = $('#model').val();
-	fillVersions(brandId, modelId);
-});
-
-function singleVersionPricesTable(versionName, priceSymbol, prices){
+function singleVersionPricesTable(versionName, prices){
 	var table = openTableComponent;
-	table += buildVersionTR(versionName, priceSymbol, prices);
+	table += buildVersionTR(versionName, prices);
 	table += closeTableComponent;
 	$('#pricesTable').html(table);
 }
@@ -110,11 +107,11 @@ function singleVersionPricesTable(versionName, priceSymbol, prices){
 function multiVersionPricesTable(brandId, modelId){
  	var table = openTableComponent;
  	var versionsTRs = "";
- 	var versionsToPrint = eval('car_model_'+brandId+'_'+modelId);
+ 	var versionsToPrint = eval('model_'+brandId+'_'+modelId);
  	var versionPrices;
 	for(var i=0; i < versionsToPrint.length; i++){
 		versionPrices =  eval("prices_"+brandId+"_"+modelId+"_"+versionsToPrint[i].id);
-		versionsTRs += buildVersionTR(versionsToPrint[i].name, versionsToPrint[i].symbol, versionPrices);
+		versionsTRs += buildVersionTR(versionsToPrint[i].name, versionPrices);
 	}
 	table += versionsTRs;
 	table += closeTableComponent;
@@ -130,15 +127,27 @@ $('#priceSearch').click(function(){
 		multiVersionPricesTable(brandId, modelId);
 	}else{
 		var versionName = $("#version option:selected").text();
-		var prices = eval('car_prices_'+brandId+"_"+modelId+"_"+versionId);
-		var priceSymbol = eval('car_model_'+brandId+'_'+modelId).symbol;
-		singleVersionPricesTable(versionName, priceSymbol, prices);
+		var prices = eval('prices_'+brandId+"_"+modelId+"_"+versionId);
+		singleVersionPricesTable(versionName, prices);
 	}
 
 });
 
+$('#brand').change(function(b){
+	var brandVal = $('#brand').val();	
+	fillModels(brandVal);
+});
+
+$('#model').change(function(){
+	//ClearAndEnableVersion();
+	//var versionComp = $('#version');
+	var brandId = $('#brand').val();
+	var modelId = $('#model').val();
+	fillVersions(brandId, modelId);
+});
+
 function fillModels(brandId){
-	 var modelValues = eval('car_brand_'+brandId);	
+	 var modelValues = eval('brand_'+brandId);	
 	 var fill = "";
 	 for(var i=0; i< modelValues.length; i++){
 			fill += "<option value=\""+modelValues[i].id+"\">"+modelValues[i].name+"</option>";
@@ -148,48 +157,61 @@ function fillModels(brandId){
 }
 
 function fillVersions(brandId, modelId){
-	var versionValues = eval('car_model_'+brandId+'_'+modelId);
+	var versionValues = eval('model_'+brandId+'_'+modelId);
 	var fill = "<option value=\"-1\">Ver todas</option>";
 	for(var i=0; i< versionValues.length; i++){
 		fill += "<option value="+versionValues[i].id+">"+versionValues[i].name+"</option>";
 	}
 	$('#version').html(fill);
 
-}	
+}
 
-function thNode(symbol, content){
-	if(content=="0"){
-		return "<th><p>"+emptyPrice+"</p></th>";
-	}else{
-		return "<th><p>"+symbol+' '+content+"</p></th>";
+
+/*
+function disableAndCleanVersions(){
+		var version = $('#version'); 
+		version.attr('disabled', 'true');
+		version.html('');
 	}
+	
+function ClearAndEnableVersion(){
+		var version = $('#version'); 
+		version.removeAttr('disabled');
+		version.html('');
+}
+*/	
+
+function thNode(content){
+	return "<th><p>"+content+"</p></th>";
 }				
 
 function trNode(content){
 	return "<tr>"+content+"</tr>";
 }			
 
-function buildVersionTR(versionName, priceSymbol, prices){
+function buildVersionTR(versionName, prices){
 	
-	var ths = thNode('', versionName);
-	ths += thNode(priceSymbol, prices.index0KM);
-	ths += thNode(priceSymbol, prices.index2010);
-	ths += thNode(priceSymbol, prices.index2009);
-	ths += thNode(priceSymbol, prices.index2008);
-	ths += thNode(priceSymbol, prices.index2007);
-	ths += thNode(priceSymbol, prices.index2006);
-	ths += thNode(priceSymbol, prices.index2005);
-	ths += thNode(priceSymbol, prices.index2004);
-	ths += thNode(priceSymbol, prices.index2003);
-	ths += thNode(priceSymbol, prices.index2002);
-	ths += thNode(priceSymbol, prices.index2001);
-	ths += thNode(priceSymbol, prices.index2000);
-	ths += thNode(priceSymbol, prices.index1999);
+	var ths = thNode(versionName);
+	ths += thNode(prices.index0KM);
+	ths += thNode(prices.index2010);
+	ths += thNode(prices.index2009);
+	ths += thNode(prices.index2008);
+	ths += thNode(prices.index2007);
+	ths += thNode(prices.index2006);
+	ths += thNode(prices.index2005);
+	ths += thNode(prices.index2004);
+	ths += thNode(prices.index2003);
+	ths += thNode(prices.index2002);
+	ths += thNode(prices.index2001);
+	ths += thNode(prices.index2000);
+	ths += thNode(prices.index1999);
 	return trNode(ths);
 }
 
 
-</g:javascript>
+
+</script>
+
 
 
 

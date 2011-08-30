@@ -17,6 +17,8 @@ class LineParserServiceTests extends GrailsUnitTestCase {
 	
 	static def ALFA_ROMEO_LINE = "\"002\",\"0002\",\"001\",\"ALFA ROMEO\",\"145\",\"1.8 TS (L96)\",\"\$\",,,,,,,,,,,,\"23520\",\"22400\""
 	static def MB_LINE =  "\"028\",\"0024\",\"018\",\"MERCEDES BENZ\",\"Viano\",\"2.2 CDI Ambiente AT 7 Pass\",\"u\$s\",\"78300\",\"65000\",\"61000\",\"57000\",\"51000\",\"46000\",\"41000\",\"37000\",,,,,"
+	
+	static def AGRALE_BUS_LINE = 		"\"125\",\"0005\",\"004\",\"AGRALE\",\"Chasis\",\"MA 15.0 TCE E-Tronic p/Bus urbano\",\"\$\",\"276000\",\"204484\",\"190852\",\"177219\",\"163587\",,,,,,,,,,,,,,,,,,,,"
 		
     protected void setUp() {
         super.setUp()
@@ -70,7 +72,7 @@ class LineParserServiceTests extends GrailsUnitTestCase {
 	void testVersionSimpleLine(){
 		def line = ALFA_ROMEO_LINE
 		
-		Version v = lineParserService.parseVersion(line)
+		Version v = lineParserService.parseCarVersion(line)
 		
 		assertEquals("1.8 TS (L96)", v.name)
 		assertEquals(1, v.id)
@@ -84,7 +86,7 @@ class LineParserServiceTests extends GrailsUnitTestCase {
 	void testVersionFullLine(){
 		def line = MB_LINE
 		
-		Version v = lineParserService.parseVersion(line)
+		Version v = lineParserService.parseCarVersion(line)
 		
 		assertEquals("2.2 CDI Ambiente AT 7 Pass", v.name)
 		assertEquals(18, v.id)
@@ -100,6 +102,29 @@ class LineParserServiceTests extends GrailsUnitTestCase {
 		}
 	
 	
+	/************ TRUCKS ************/
+	
+	void testTruckSimpleLine(){
+		def line = AGRALE_BUS_LINE
+		
+		Brand b = lineParserService.parseBrand(line)
+		Model m = lineParserService-parseModel(line)
+		Version v = lineParserServie.parseTruckVersion(line)
+		
+		assertEquals("AGRALE", b.name)
+		assertEquals(125, b.id)
+		
+		assertEquals("Chasis", m.name)
+		assertEquals(5, m.id)
+		
+		
+		assertEquals("MA 15.0 TCE E-Tronic p/Bus urbano", v.name)
+		assertEquals(4, v.id)
+		
+		assertEquals(276000, v.prices.get(Constants.INDEX_PRICE_0KM))
+		assertEquals(204484, v.getPrices().get(Constants.INDEX_PRICE_2009))
+		assertEquals(163587, v.getPrices().get(Constants.INDEX_PRICE_2007))
+		}
 	
 	
 }

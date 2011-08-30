@@ -39,7 +39,7 @@ menu.cars.each{
         model = it
         modelBuffer.append(javascriptBuilder.doModelVar(com.acara.configs.Constants.CARS_PREFIX, String.valueOf(brand.id) ,it)+"\n")
         model.versions.each{
-            versionBuffer.append(javascriptBuilder.doVersionVar(com.acara.configs.Constants.CARS_PREFIX, String.valueOf(brand.id), String.valueOf(model.id), it)+"\n")
+            versionBuffer.append(javascriptBuilder.doCarsVersionVar(com.acara.configs.Constants.CARS_PREFIX, String.valueOf(brand.id), String.valueOf(model.id), it)+"\n")
         }
     }
 }

@@ -43,8 +43,8 @@ class JavaScriptNodeBuilderServiceTests extends GrailsUnitTestCase {
 		def mockedMenuInstances = [menu]
 		mockDomain(Menu, mockedMenuInstances)
 		
-		treeBuilder.checkAndAssociateBrand(menu, line1)
-		treeBuilder.checkAndAssociateBrand(menu, line2)
+		treeBuilder.checkAndAssociateCarBrand(menu, line1)
+		treeBuilder.checkAndAssociateCarBrand(menu, line2)
 
 		Brand brandAlfa = menu.cars.find({ it.id == 2})
 		Brand brandMB = menu.cars.find({ it.id == 28})
@@ -88,8 +88,8 @@ class JavaScriptNodeBuilderServiceTests extends GrailsUnitTestCase {
 		def mockedModels = [model]
 		mockDomain(Model, mockedModels)
 		
-		treeBuilder.checkAndAssociateVersion(model, line1)
-		treeBuilder.checkAndAssociateVersion(model, line2)
+		treeBuilder.checkAndAssociateCarVersion(model, line1)
+		treeBuilder.checkAndAssociateCarVersion(model, line2)
 		
 		Version version185CV = model.versions.find({ it.id == 5 })
 		Version version260CV = model.versions.find({ it.id == 6 })
@@ -98,17 +98,18 @@ class JavaScriptNodeBuilderServiceTests extends GrailsUnitTestCase {
 		
 		assertTrue(modelVar.indexOf("2.2 JTS (185cv)")>0)
 		assertTrue(modelVar.indexOf("3.2 V6 JTS 4x4 (260cv)")>0)
+		assertTrue(modelVar.indexOf("\$")>0)
 		
 		}
 	
 	void testVersionPriceList(){
 		def line = ALFA_ROMEO_SPIDER_LINE
 		
-		Version versionAlfa = lineParser.parseVersion(line)
+		Version versionAlfa = lineParser.parseCarVersion(line)
 		def mockedVersion = [versionAlfa]
 		mockDomain(Version, mockedVersion)
 		
-		String versionVar = javascriptBuilder.doVersionVar(Constants.CARS_PREFIX, "02","11", versionAlfa)
+		String versionVar = javascriptBuilder.doCarsVersionVar(Constants.CARS_PREFIX, "02","11", versionAlfa)
 		
 		assertTrue(versionVar.indexOf("299600")>0)
 		assertTrue(versionVar.indexOf("269360")>0)

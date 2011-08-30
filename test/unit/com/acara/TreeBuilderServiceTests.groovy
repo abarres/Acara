@@ -18,7 +18,9 @@ class TreeBuilderServiceTests extends GrailsUnitTestCase {
 	
 	static def MB_LINE =  			"\"028\",\"0024\",\"018\",\"MERCEDES BENZ\",\"Viano\",\"2.2 CDI Ambiente AT 7 Pass\",\"u\$s\",\"78300\",\"65000\",\"61000\",\"57000\",\"51000\",\"46000\",\"41000\",\"37000\",,,,,"
 	
-	static def MB_LINE_DUP_MODEL =  	"\"028\",\"0002\",\"001\",\"MERCEDES BENZ\",\"Viano\",\"2.2 CDI Ambiente AT 7 Pass DUPLICADO\",\"u\$s\",\"78300\",\"65000\",\"61000\",\"57000\",\"51000\",\"46000\",\"41000\",\"37000\",,,,,"
+	static def MB_LINE_DUP_MODEL =  "\"028\",\"0002\",\"001\",\"MERCEDES BENZ\",\"Viano\",\"2.2 CDI Ambiente AT 7 Pass DUPLICADO\",\"u\$s\",\"78300\",\"65000\",\"61000\",\"57000\",\"51000\",\"46000\",\"41000\",\"37000\",,,,,"
+	
+	static def AGRALE_BUS_LINE = 		"\"125\",\"0005\",\"004\",\"AGRALE\",\"Chasis\",\"MA 15.0 TCE E-Tronic p/Bus urbano\",\"\$\",\"276000\",\"204484\",\"190852\",\"177219\",\"163587\",,,,,,,,,,,,,,,,,,,,"
 	
     protected void setUp() {
         super.setUp()
@@ -36,7 +38,7 @@ class TreeBuilderServiceTests extends GrailsUnitTestCase {
 		Menu menu = new Menu()
 		def mockedInstances = [menu]
 		mockDomain(Menu, mockedInstances)
-		treeBuilder.checkAndAssociateBrand(menu, line)
+		treeBuilder.checkAndAssociateCarBrand(menu, line)
 		
 		assertEquals(002, menu.cars?.find({it.id= 002})?.id )
 		assertEquals("ALFA ROMEO", menu.cars?.find({it.id= 002})?.name)
@@ -54,12 +56,12 @@ class TreeBuilderServiceTests extends GrailsUnitTestCase {
 		
 		}
 	
-	void testAssociatedVersion(){
+	void testAssociatedCarVersion(){
 		def line = ALFA_ROMEO_LINE
 		Model model = lineParser.parseModel(line)
 		def mockedInstances = [model]
 		mockDomain(Model, mockedInstances)
-		treeBuilder.checkAndAssociateVersion(model, line)
+		treeBuilder.checkAndAssociateCarVersion(model, line)
 		
 		assertEquals(001, model.versions?.find({it.id == 001}).id )
 		assertEquals("1.8 TS (L96)", model.versions?.find({it.id == 001}).name)
@@ -74,8 +76,8 @@ class TreeBuilderServiceTests extends GrailsUnitTestCase {
 		def mockedMenuInstances = [menu]
 		mockDomain(Menu, mockedMenuInstances)
 		
-		treeBuilder.checkAndAssociateBrand(menu, line1)
-		treeBuilder.checkAndAssociateBrand(menu, line2)
+		treeBuilder.checkAndAssociateCarBrand(menu, line1)
+		treeBuilder.checkAndAssociateCarBrand(menu, line2)
 
 		Brand brandAlfa = menu.cars.find({ it.id == 2})
 		Brand brandMB = menu.cars.find({ it.id == 28})
@@ -90,8 +92,8 @@ class TreeBuilderServiceTests extends GrailsUnitTestCase {
 		def mockedModelInstances = [modelFirst, modelDup]
 		mockDomain(Model, mockedModelInstances)
 		
-		treeBuilder.checkAndAssociateVersion(modelFirst, line1)
-		treeBuilder.checkAndAssociateVersion(modelDup, line2)
+		treeBuilder.checkAndAssociateCarVersion(modelFirst, line1)
+		treeBuilder.checkAndAssociateCarVersion(modelDup, line2)
 		
 		Version versionFirst = modelFirst.versions.find({ it.id == 1})
 		Version versionDup = modelDup.versions.find({ it.id == 1})
@@ -141,7 +143,7 @@ class TreeBuilderServiceTests extends GrailsUnitTestCase {
 		def mockedMenuInstances = [menu]
 		mockDomain(Menu, mockedMenuInstances)
 		
-		Brand brand = treeBuilder.checkAndAssociateBrand(menu, line)
+		Brand brand = treeBuilder.checkAndAssociateCarBrand(menu, line)
 		def mockedBrandInstances = [brand]
 		mockDomain(Brand, mockedBrandInstances)
 		
@@ -149,13 +151,55 @@ class TreeBuilderServiceTests extends GrailsUnitTestCase {
 		def mockedModelInstances = [model]
 		mockDomain(Model, mockedModelInstances)
 		
-		Version vers = treeBuilder.checkAndAssociateVersion(model, line)				
+		Version vers = treeBuilder.checkAndAssociateCarVersion(model, line)				
 		
 		assertEquals("MERCEDES BENZ", menu.cars.find({it.id = 28}).name)
 		assertEquals("Viano",  menu.cars.find({it.id = 28}).models.find({ it.id == 24}).name )
 		assertEquals("2.2 CDI Ambiente AT 7 Pass", menu.cars.find({it.id = 28}).models.find({ it.id == 24}).versions.find({ it.id== 18 }).name )
 		
 		}
+	
+	
+	/***************************** TRUCKS **********/
+	
+	void testAssociatedTruckBrand(){
+			def line = AGRALE_BUS_LINE
+			Menu menu = new Menu()
+			def mockedInstances = [menu]
+			mockDomain(Menu, mockedInstances)
+			treeBuilder.checkAndAssociateBrand(menu, line)
+			
+			assertEquals(002, menu.cars?.find({it.id= 002})?.id )
+			assertEquals("AGRALE", menu.cars?.find({it.id= 002})?.name)
+			}
+
+	void testAssociatedTruckModel(){
+		def line = AGRALE_BUS_LINE
+		Brand brand = lineParser.parseBrand(line)
+		def mockedInstances = [brand]
+		mockDomain(Brand, mockedInstances)
+		treeBuilder.checkAndAssociateModel(brand, line)
+		
+		assertEquals(002, brand.models?.find({it.id == 002}).id)
+		assertEquals("145",  brand.models?.find({it.id == 002}).name)
+		
+		}
+	
+	
+	void testAssociatedTruckVersion(){
+		def line = ALFA_ROMEO_LINE
+		Model model = lineParser.parseModel(line)
+		def mockedInstances = [model]
+		mockDomain(Model, mockedInstances)
+		treeBuilder.checkAndAssociateVersion(model, line)
+		
+		assertEquals(001, model.versions?.find({it.id == 001}).id )
+		assertEquals("1.8 TS (L96)", model.versions?.find({it.id == 001}).name)
+		
+		}
+	
+	
+	
 	
 	
 }

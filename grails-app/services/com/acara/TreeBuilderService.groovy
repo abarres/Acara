@@ -11,7 +11,7 @@ class TreeBuilderService {
     static transactional = false
 	def lineParserService
 
-    Brand checkAndAssociateBrand(Menu menu, def line){
+    Brand checkAndAssociateCarBrand(Menu menu, def line){
 		String[] fields = lineParserService.tokenizeLine(line)
 		Brand brand
 		int brandId = lineParserService.parseId(fields[Constants.MARCA_ID])
@@ -39,12 +39,12 @@ class TreeBuilderService {
 		return model
 		}
 	
-	Version checkAndAssociateVersion(Model model, def line){
+	Version checkAndAssociateCarVersion(Model model, def line){
 		String[] fields = lineParserService.tokenizeLine(line)
 		int versionId = lineParserService.parseId(fields[Constants.VERSION_ID])
 		Version vers
 		if (! model.versions?.find { it.id == versionId }){
-			vers = lineParserService.parseVersion(line) 
+			vers = lineParserService.parseCarVersion(line) 
 			model.addToVersions(vers)
 			}
 		else{
@@ -54,10 +54,9 @@ class TreeBuilderService {
 		}
 	
 	void processFullCarsLine(Menu menu,def line){
-//		String[] fields = lineParserService.tokenizeLine(line)
-		Brand brand = checkAndAssociateBrand(menu, line)
+		Brand brand = checkAndAssociateCarBrand(menu, line)
 		Model model = checkAndAssociateModel(brand, line)
-		Version vers = checkAndAssociateVersion(model, line)
+		Version vers = checkAndAssociateCarVersion(model, line)
 	}	
 }
 

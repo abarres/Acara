@@ -13,7 +13,7 @@ grails.project.dependency.resolution = {
         grailsPlugins()
         grailsHome()
         grailsCentral()
-
+		mavenRepo "http://git.ml.com:8081/nexus/content/groups/Arquitectura"
         // uncomment the below to enable remote dependency resolution
         // from public Maven repositories
         //mavenLocal()

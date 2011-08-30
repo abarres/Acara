@@ -105,3 +105,13 @@ uiperformance.bundles = [
 		name: 'acaraCSS.base',
 		files: ['chico-0.7.0', 'publicationFlow','base']]
 	 ]
+
+security{
+	login{	   
+	   notRequires=[
+		   "secureBridge":["index"],
+		   "ping":["validate"],
+		   "pricesList":["index"]
+	   ]
+	}
+}	
